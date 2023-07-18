@@ -1,0 +1,22 @@
+<h1>Register</h1>
+
+<%= form_with(model: @user, url: create_user_path) do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+
+  <%= form.label :lastName %>
+  <%= form.text_field :lastName %>
+
+  <%= form.label :email %>
+  <%= form.email_field :email %>
+
+  <%= form.label :password %>
+  <%= form.password_field :password %>
+
+
+  <%= form.submit "Register", class: "btn btn-primary" %>
+<% end %>
+
+<% if flash[:alert] %>
+  <p style="color: red"><%= flash[:alert] %></p>
+<% end %>

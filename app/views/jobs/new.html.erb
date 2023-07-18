@@ -1,0 +1,27 @@
+<h1>Add Job</h1>
+
+<%= form_with(model: @job, url: jobs_path, method: :post) do |form| %>
+  <%= form.label :companyName %>
+  <%= form.text_field :companyName %>
+
+  <%= form.label :jobType %>
+  <%= form.text_field :jobType %>
+
+  <%= form.label :location %>
+  <%= form.text_field :location %>
+
+  <%= form.label :remoteOK %>
+  <%= form.check_box :remoteOK %>
+
+  <%= form.label :phoneNumber %>
+  <%= form.text_field :phoneNumber %>
+
+  <%= form.label :url %>
+  <%= form.text_field :url %>
+
+  <%= form.submit "Create Job", class: "btn btn-primary" %>
+<% end %>
+
+<% if flash[:alert] %>
+  <p style="color: red"><%= flash[:alert] %></p>
+<% end %>

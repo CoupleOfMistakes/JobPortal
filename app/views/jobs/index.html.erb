@@ -1,0 +1,31 @@
+<h1>All Jobs</h1>
+
+<% if session[:user_id] %>
+  Logged in as: <%= session[:user_name] %> <!-- Display the user's name -->
+  <%= link_to "Logout", logout_path, method: :delete, class: "btn btn-primary" %>
+<% else %>
+  <%= link_to "Login", login_path, class: "btn btn-primary" %>
+  <%= link_to "Register", new_user_path, class: "btn btn-primary" %>
+<% end %>
+
+<% @jobs.each do |job| %>
+  <div>
+    <h3><%= job.companyName %></h3>
+    <p><strong>Job Type:</strong> <%= job.jobType %></p>
+    <p><strong>Location:</strong> <%= job.location %></p>
+    <p><strong>Remote OK:</strong> <%= job.remoteOK ? 'Yes' : 'No' %></p>
+    <% if job.phoneNumber.present? %>
+      <p><strong>Phone number:</strong> <%= job.phoneNumber %></p>
+    <% end %>
+    <% if job.url.present? %>
+      <p><strong>Company URL:</strong> <%= link_to job.url, job.url, target: "_blank" %></p>
+    <% end %>
+
+    <% if session[:user_id] && job.user_id == session[:user_id] %>
+      <%= link_to "Edit", edit_job_path(job), class: "btn btn-primary" %>
+      <%= link_to "Remove", delete_job_path(job), data: { confirm: "Are you sure you want to delete this job?" }, class: "btn btn-danger" %>
+    <% end %>
+
+    <hr>
+  </div>
+<% end %>

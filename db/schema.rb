@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_18_123249) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_19_125233) do
   create_table "jobs", force: :cascade do |t|
     t.string "companyName"
     t.string "jobType"
@@ -21,6 +21,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_18_123249) do
     t.datetime "updated_at", null: false
     t.string "phoneNumber"
     t.string "url"
+    t.integer "view_count", default: 0
     t.index ["user_id"], name: "index_jobs_on_user_id"
   end
 
@@ -28,9 +29,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_18_123249) do
     t.string "name"
     t.string "lastName"
     t.string "email"
-    t.string "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "password_digest"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

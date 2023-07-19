@@ -44,6 +44,13 @@ class JobsController < ApplicationController
     end
   end
 
+  def show
+    @job = Job.find(params[:id])
+    if !current_user || @job.user_id != current_user.id
+      @job.increment!(:view_count)
+    end
+  end
+
   private
 
   def job_params

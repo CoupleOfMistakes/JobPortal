@@ -10,7 +10,7 @@ class UsersController < ApplicationController
       flash[:notice] = "User registered successfully!"
       redirect_to jobs_path
     else
-      flash[:alert] = "Error while creating user. Check server logs."
+      flash[:alert] = "Error while creating user: #{user_errors}"
       puts flash[:alert]
       redirect_to new_user_path
     end
@@ -20,5 +20,9 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :lastName, :email, :password)
+  end
+
+  def user_errors
+    @user.errors.full_messages.join(', ')
   end
 end

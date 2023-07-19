@@ -1,8 +1,13 @@
 <h1>All Jobs</h1>
 
+<% if flash[:notice] %>
+  <p style="color: green"><%= flash[:notice] %></p>
+<% end %>
+
 <% if session[:user_id] %>
-  Logged in as: <%= session[:user_name] %> <!-- Display the user's name -->
+  Logged in as: <%= current_user.name %>  <%= current_user.lastName %> <br>
   <%= link_to "Logout", logout_path, method: :delete, class: "btn btn-primary" %>
+  <%= link_to "New Job", new_job_path, class: "btn btn-primary" %>
 <% else %>
   <%= link_to "Login", login_path, class: "btn btn-primary" %>
   <%= link_to "Register", new_user_path, class: "btn btn-primary" %>
@@ -25,6 +30,8 @@
       <%= link_to "Edit", edit_job_path(job), class: "btn btn-primary" %>
       <%= link_to "Remove", delete_job_path(job), data: { confirm: "Are you sure you want to delete this job?" }, class: "btn btn-danger" %>
     <% end %>
+
+    <%= link_to "View", job_path(job), class: "btn btn-primary" %> <!-- Add this line for "View" button -->
 
     <hr>
   </div>

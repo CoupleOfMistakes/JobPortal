@@ -1,0 +1,13 @@
+<h1><%= @job.companyName %></h1>
+<p><strong>Job Type:</strong> <%= @job.jobType %></p>
+<p><strong>Location:</strong> <%= @job.location %></p>
+<p><strong>Remote OK:</strong> <%= @job.remoteOK ? 'Yes' : 'No' %></p>
+<% if @job.phoneNumber.present? %>
+  <p><strong>Phone number:</strong> <%= @job.phoneNumber %></p>
+<% end %>
+<% if @job.url.present? %>
+  <p><strong>Company URL:</strong> <%= link_to @job.url, @job.url, target: "_blank" %></p>
+<% end %>
+<% if current_user && @job.user_id == current_user.id %>
+  <p><strong>View Count:</strong> <%= @job.view_count %></p>
+<% end %>
